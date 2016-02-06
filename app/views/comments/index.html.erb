@@ -1,0 +1,8 @@
+<h1>All Comments (<%= @comments.count %>)</h1>
+
+<% @comments.order("id").each do |comment| %>
+  <div>
+     <p><%= link_to comment.body, comment_path(comment) %></p>
+     <hr>
+  </div>
+<% end %>

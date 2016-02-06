@@ -7,8 +7,17 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-<a href="<%= home_path %>">Home</a> |
-<a href="<%= about_path %>">About</a>
+<%= link_to "Home", home_path %> |
+<%= link_to "About", about_path %> |
+<%= link_to "All Posts", posts_path %> |
+<%= link_to "New Post", new_post_path %> |
+<%= link_to "All Comments", comments_path %> |
+<%= link_to "New Comments", new_comment_path %>
+<%= form_tag("/search", method: "get") do %>
+  <%= text_field_tag(:q) %>
+  <%= submit_tag("Search Posts") %>
+<% end %>
+
 <%= yield %>
 
 </body>

@@ -1,0 +1,8 @@
+<h1>All Posts (<%= @posts.count %>)</h1>
+
+<% @posts.order("id").each do |post| %>
+  <div>
+     <p><%= link_to post.title, post_path(post) %></p>
+     <hr>
+  </div>
+<% end %>
