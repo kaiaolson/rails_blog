@@ -2,9 +2,9 @@ Rails.application.routes.draw do
 
   get "/about" => "home#about"
   get "/home" => "home#index"
-  get "/search" => "home#search"
+  get "/posts/search" => "posts#search"
 
-  resources :posts, only: [:new, :show, :create, :index, :edit, :update, :destroy]
+  resources :posts
   resources :comments
 
   root "home#index"

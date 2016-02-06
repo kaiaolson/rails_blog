@@ -8,3 +8,8 @@
       <hr>
   <% end %>
 <% end %>
+
+<% if @results.count > 10 %>
+<%= will_paginate @results %>
+<% else %>
+<% end %>

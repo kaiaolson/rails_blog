@@ -20,7 +20,7 @@ class PostsController < ApplicationController
   end
 
   def index
-    @posts = Post.all
+    @posts = Post.paginate(:page => params[:page], :per_page => 10)
   end
 
   def edit
@@ -40,6 +40,11 @@ class PostsController < ApplicationController
     @post.destroy
     redirect_to posts_path
     flash[:notice] = "Your post was deleted!"
+  end
+
+  def search
+    @term = params[:q]
+    @results = Post.search(@term).paginate(:page => params[:page], :per_page => 10)
   end
 
   private

@@ -13,7 +13,7 @@
 <%= link_to "New Post", new_post_path %> |
 <%= link_to "All Comments", comments_path %> |
 <%= link_to "New Comments", new_comment_path %>
-<%= form_tag("/search", method: "get") do %>
+<%= form_tag("/posts/search", method: "get") do %>
   <%= text_field_tag(:q) %>
   <%= submit_tag("Search Posts") %>
 <% end %>

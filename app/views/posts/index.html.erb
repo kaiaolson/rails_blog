@@ -6,3 +6,8 @@
      <hr>
   </div>
 <% end %>
+
+<% if @posts.count > 10 %>
+<%= will_paginate @posts %>
+<% else %>
+<% end %>
