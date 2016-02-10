@@ -10,7 +10,7 @@ class Post < ActiveRecord::Base
     if body.length < 100
       body
     else
-      "#{body.slice(0..96)}..."
+      "#{body[0..96]}..."
     end
   end
 end
