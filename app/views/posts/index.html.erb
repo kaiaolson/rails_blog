@@ -1,4 +1,4 @@
-<h1>All Posts (<%= @posts.count %>)</h1>
+<h1>All Posts (<%= Post.count %>)</h1>
 
 <% @posts.order("id").each do |post| %>
   <div>
@@ -7,7 +7,4 @@
   </div>
 <% end %>
 
-<% if @posts.count > 10 %>
-<%= will_paginate @posts %>
-<% else %>
-<% end %>
+<%= paginate @posts %>

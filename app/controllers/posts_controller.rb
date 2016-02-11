@@ -17,10 +17,11 @@ class PostsController < ApplicationController
   end
 
   def show
+    @comment = Comment.new
   end
 
   def index
-    @posts = Post.paginate(:page => params[:page], :per_page => 10)
+    @posts = Post.page params[:page]
   end
 
   def edit
@@ -43,8 +44,8 @@ class PostsController < ApplicationController
   end
 
   def search
-    @term = params[:q]
-    @results = Post.search(@term).paginate(:page => params[:page], :per_page => 10)
+    session[:q] = params[:q]
+    @results = Post.search(session[:q]).page params[:page]
   end
 
   private

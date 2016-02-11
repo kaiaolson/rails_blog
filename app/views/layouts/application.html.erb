@@ -7,18 +7,29 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-<%= link_to "Home", home_path %> |
-<%= link_to "About", about_path %> |
-<%= link_to "All Posts", posts_path %> |
-<%= link_to "New Post", new_post_path %> |
-<%= link_to "All Comments", comments_path %> |
-<%= link_to "New Comments", new_comment_path %>
-<%= form_tag("/posts/search", method: "get") do %>
-  <%= text_field_tag(:q) %>
-  <%= submit_tag("Search Posts") %>
+<%= content_tag(:div, class: "container-fluid") do %>
+  <%= content_tag(:div, class: "row") do %>
+    <%= content_tag(:div, class: "col-sm-5") do %>
+      <%= link_to "Home", home_path %> |
+      <%= link_to "About", about_path %> |
+      <%= link_to "All Posts", posts_path %> |
+      <%= link_to "New Post", new_post_path %> 
+    <% end %>
+    <%= content_tag(:div, class: "col-sm-7") do %>
+      <%= form_tag("/posts/search", method: "get", class: "form-inline") do %>
+        <%= content_tag(:div, class: "form-group") do %>
+          <%= text_field_tag(:q, session[:q], class: "form-control") %>
+          <%= submit_tag("Search Posts", class: "btn btn-primary") %>
+        <% end %>
+      <% end %>
+    <% end %>
+  <% end %>
+  <%= content_tag(:div, class: "row") do %>
+    <%= content_tag(:div, class: "col-sm-12") do %>
+      <%= yield %>
+    <% end %>
+  <% end %>
 <% end %>
-
-<%= yield %>
 
 </body>
 </html>

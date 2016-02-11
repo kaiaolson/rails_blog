@@ -1,4 +1,4 @@
-<h1>All Comments (<%= @comments.count %>)</h1>
+<h1>All Comments (<%= Comment.count %>)</h1>
 
 <% @comments.order("id").each do |comment| %>
   <div>
@@ -6,3 +6,5 @@
      <hr>
   </div>
 <% end %>
+
+<%= paginate @comments %>

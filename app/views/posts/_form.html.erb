@@ -1,0 +1,17 @@
+<ul>
+  <% @post.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+  <% end %>
+</ul>
+
+<%= form_for @post do |f| %>
+  <%= content_tag(:div, class: "form-group") do %>
+    <%= f.label :title %>
+    <%= f.text_field :title, class: "form-control" %>
+  <% end %>
+  <%= content_tag(:div, class: "form-group") do %>
+    <%= f.label :body %>
+    <%= f.text_area :body, class: "form-control" %>
+  <% end %>
+  <%= f.submit class: "btn btn-success" %>
+<% end %>

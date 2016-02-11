@@ -1,4 +1,7 @@
 class Post < ActiveRecord::Base
+  has_many :comments, dependent: :destroy
+  paginates_per 10
+
   validates :title, presence: true, uniqueness: true, length: {minimum: 7}
   validates :body, presence: true
 

@@ -4,7 +4,9 @@ Rails.application.routes.draw do
   get "/home" => "home#index"
   get "/posts/search" => "posts#search"
 
-  resources :posts
+  resources :posts do
+    resources :comments, only: [:create, :destroy]
+  end
   resources :comments
 
   root "home#index"
