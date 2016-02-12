@@ -1,5 +1,6 @@
 class Post < ActiveRecord::Base
   has_many :comments, dependent: :destroy
+  belongs_to :category
   paginates_per 10
 
   validates :title, presence: true, uniqueness: true, length: {minimum: 7}
@@ -15,5 +16,9 @@ class Post < ActiveRecord::Base
     else
       "#{body[0..96]}..."
     end
+  end
+
+  def category_title
+    category.title if category
   end
 end

@@ -13,5 +13,9 @@
     <%= f.label :body %>
     <%= f.text_area :body, class: "form-control" %>
   <% end %>
+  <%= content_tag(:div, class: "form-group") do %>
+    <%= f.label :category_id %>
+    <%= f.collection_select(:category_id, Category.order("title"), :id, :title, class: "form-control")  %>
+  <% end %>
   <%= f.submit class: "btn btn-success" %>
 <% end %>
