@@ -2,8 +2,13 @@
 <h4>Category: <%= @post.category_title %></h4>
 <p><%= @post.body %></p>
 
+<% if can? :edit, @post %>
 <%= link_to "Edit", edit_post_path(@post), class: "btn btn-warning" %>
+<% end %>
+
+<% if can? :destroy, @post %>
 <%= link_to "Delete", post_path(@post), class: "btn btn-danger", method: :delete, data: {confirm: "Are you sure you want to delete this post?"} %>
+<% end %>
 
 <h2>Comments</h2>
 <p><%= notice %></p>
@@ -13,10 +18,12 @@
     <%= com.body %> |
     <%= com.created_at.strftime("%B %d, %Y") %>
     <%#= shortcut for path %>
+    <% if can? :destroy, @comment %>
     <%= link_to "Delete", [@post, com],
                           method: :delete,
                           style: "text-align: right;",
                           data: {confirm: "Are you sure?"}%>
+    <% end %>
     <hr>
   <% end %>
 <% end %>

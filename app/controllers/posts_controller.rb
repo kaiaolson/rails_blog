@@ -1,5 +1,7 @@
 class PostsController < ApplicationController
   before_action :find_post, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user, except: [:index, :show]
+  before_action :authorize_user, only: [:edit, :update, :destroy]
 
   def new
     @post = Post.new
@@ -51,10 +53,16 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:title, :body, :category_id)
+    params.require(:post).permit(:title, :body, :category_id, :user_id)
   end
 
   def find_post
     @post = Post.find params[:id]
+  end
+
+  def authorize_user
+    unless can? :manage, @post
+      redirect_to root_path, alert: "access denied!"
+    end
   end
 end
