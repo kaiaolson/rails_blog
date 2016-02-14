@@ -19,13 +19,21 @@
     <%= f.label :email %>
     <%= f.email_field :email, class: "form-control" %>
   <% end %>
-  <%= content_tag(:div, class: "form-group") do %>
-    <%= f.label :password %>
-    <%= f.password_field :password, class: "form-control" %>
-  <% end %>
-  <%= content_tag(:div, class: "form-group") do %>
-    <%= f.label :password_confirmation %>
-    <%= f.password_field :password_confirmation, class: "form-control" %>
+
+  <% if user_signed_in?%>
+    <%= content_tag(:div, class: "form-group") do %>
+      <%= f.label :current_password %>
+      <%= f.password_field :current_password, class: "form-control" %>
+    <% end %>
+  <% else %>
+    <%= content_tag(:div, class: "form-group") do %>
+      <%= f.label :password %>
+      <%= f.password_field :password, class: "form-control" %>
+    <% end %>
+    <%= content_tag(:div, class: "form-group") do %>
+      <%= f.label :password_confirmation %>
+      <%= f.password_field :password_confirmation, class: "form-control" %>
+    <% end %>
   <% end %>
   <%= f.submit class: "btn btn-primary" %>
 <% end %>

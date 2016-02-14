@@ -12,7 +12,7 @@ class CommentsController < ApplicationController
     comment_params = params.require(:comment).permit(:body)
     @comment = Comment.new comment_params
     @comment.post_id = @post.id
-    @comment.user =
+    @comment.user = current_user
     if @comment.save
       redirect_to post_path(@post), notice: "Comment created!"
     else

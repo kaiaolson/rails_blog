@@ -22,4 +22,8 @@ class Post < ActiveRecord::Base
   def category_title
     category.title if category
   end
+
+  def user_full_name
+    user.full_name if user
+  end
 end

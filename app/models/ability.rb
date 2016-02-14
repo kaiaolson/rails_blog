@@ -19,9 +19,6 @@ class Ability
       comment.user == user
     end
 
-    can :destroy, Comment do |comment|
-      comment.post.user == user
-    end
     #
     # The first argument to `can` is the action you are giving the user
     # permission to do.

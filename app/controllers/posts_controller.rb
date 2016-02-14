@@ -9,6 +9,7 @@ class PostsController < ApplicationController
 
   def create
     @post = Post.new post_params
+    @post.user = current_user
     if @post.save
       redirect_to post_path(@post)
       flash[:notice] = "Post created!"
@@ -23,7 +24,13 @@ class PostsController < ApplicationController
   end
 
   def index
-    @posts = Post.page params[:page]
+    if params[:all] == "all"
+      @posts = Post.order("id").page params[:page]
+    elsif params[:all] == "user"
+      @posts = Post.where(user_id: current_user.id).order("id").page params[:page]
+    else
+      @posts = Post.order("id").page params[:page]
+    end
   end
 
   def edit

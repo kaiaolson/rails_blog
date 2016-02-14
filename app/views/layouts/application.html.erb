@@ -9,7 +9,7 @@
 <body>
 <%= content_tag(:div, class: "container-fluid") do %>
   <%= content_tag(:div, class: "row") do %>
-    <%= content_tag(:div, class: "col-sm-5") do %>
+    <%= content_tag(:div, class: "col-sm-7") do %>
       <%= link_to "Home", home_path %> |
       <%= link_to "About", about_path %> |
       <%= link_to "All Posts", posts_path %> |
@@ -19,10 +19,11 @@
         <%= link_to "Log Out", sessions_path, method: :delete, data: {confirm: "Are you sure you want to log out?"} %>
       <% else %>
         <%= link_to "Sign In", new_session_path %> |
-        <%= link_to "Sign Up", new_user_path %>
+        <%= link_to "Sign Up", new_user_path %> |
       <% end %>
+      <%= notice || alert %>
     <% end %>
-    <%= content_tag(:div, class: "col-sm-7") do %>
+    <%= content_tag(:div, class: "col-sm-5") do %>
       <%= form_tag("/posts/search", method: "get", class: "form-inline") do %>
         <%= content_tag(:div, class: "form-group") do %>
           <%= text_field_tag(:q, session[:q], class: "form-control") %>

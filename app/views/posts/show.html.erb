@@ -1,5 +1,6 @@
 <h1><%= @post.title %></h1>
 <h4>Category: <%= @post.category_title %></h4>
+<h5>Created by: <%= @post.user_full_name %></h5>
 <p><%= @post.body %></p>
 
 <% if can? :edit, @post %>
@@ -11,14 +12,13 @@
 <% end %>
 
 <h2>Comments</h2>
-<p><%= notice %></p>
 
 <% @post.comments.order("created_at DESC").each do |com|%>
   <%= content_tag(:div) do %>
     <%= com.body %> |
     <%= com.created_at.strftime("%B %d, %Y") %>
     <%#= shortcut for path %>
-    <% if can? :destroy, @comment %>
+    <% if can? :destroy, com %>
     <%= link_to "Delete", [@post, com],
                           method: :delete,
                           style: "text-align: right;",
