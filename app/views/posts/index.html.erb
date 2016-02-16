@@ -1,7 +1,11 @@
 <h1>All Posts (<%= Post.count %>)</h1>
 
-<%= link_to "All Posts", {all: "all", method: :post} %> |
-<%= link_to "User Posts", {all: "user", method: :post}%>
+<% if user_signed_in? %>
+<div class="btn-group">
+  <button class="btn btn-default"><%= link_to "All Posts", {all: "all", method: :post} %></button>
+  <button class="btn btn-default"><%= link_to "User Posts", {all: "user", method: :post}%></button>
+</div>
+<% end %>
 
 <% @posts.each do |post| %>
   <div>
@@ -10,4 +14,4 @@
   </div>
 <% end %>
 
-<%= paginate @posts %>
+<div class="text-center"><%= paginate @posts, theme: 'bootstrap3' %></div>

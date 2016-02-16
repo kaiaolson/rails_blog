@@ -1,6 +1,0 @@
-<% @posts.order("id").each do |post| %>
-  <div>
-     <h3><%= link_to post.title, post_path(post) %></h3>
-     <hr>
-  </div>
-<% end %>

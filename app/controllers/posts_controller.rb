@@ -24,7 +24,10 @@ class PostsController < ApplicationController
   end
 
   def index
-    if params[:all] == "all"
+    if params[:q]
+      session[:q] = params[:q]
+      @posts = Post.search(session[:q]).page params[:page]
+    elsif params[:all] == "all"
       @posts = Post.order("id").page params[:page]
     elsif params[:all] == "user"
       @posts = Post.where(user_id: current_user.id).order("id").page params[:page]
@@ -50,11 +53,6 @@ class PostsController < ApplicationController
     @post.destroy
     redirect_to posts_path
     flash[:notice] = "Your post was deleted!"
-  end
-
-  def search
-    session[:q] = params[:q]
-    @results = Post.search(session[:q]).page params[:page]
   end
 
   private
