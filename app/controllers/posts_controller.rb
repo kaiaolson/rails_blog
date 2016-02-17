@@ -26,13 +26,13 @@ class PostsController < ApplicationController
   def index
     if params[:q]
       session[:q] = params[:q]
-      @posts = Post.search(session[:q]).page params[:page]
+      @posts = Post.search(session[:q]).order(:updated_at).page params[:page]
     elsif params[:all] == "all"
-      @posts = Post.order("id").page params[:page]
+      @posts = Post.order(:updated_at).page params[:page]
     elsif params[:all] == "user"
-      @posts = Post.where(user_id: current_user.id).order("id").page params[:page]
+      @posts = Post.where(user_id: current_user.id).order(:updated_at).page params[:page]
     else
-      @posts = Post.order("id").page params[:page]
+      @posts = Post.order(:updated_at).page params[:page]
     end
   end
 

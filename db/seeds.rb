@@ -18,6 +18,17 @@
 #   end
 # end
 
-["Style","Technology","Nature","Photography"].each do |cat|
-  Category.create(title: cat)
+# ["Style","Technology","Nature","Photography"].each do |cat|
+#   Category.create(title: cat)
+# end
+
+# Post.all.each do |post|
+#   post.update(category_id: Category.all.sample.id)
+# end
+
+50.times do
+  Post.create title: Faker::Company.catch_phrase,
+              body: Faker::Lorem.paragraph,
+              user_id: 1,
+              category_id: Category.all.sample.id
 end
