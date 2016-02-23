@@ -10,9 +10,11 @@ Rails.application.routes.draw do
 
   resources :posts do
     resources :comments, only: [:create, :destroy]
-    post "/" => "posts#index", on: :collection
+    # post "/" => "posts#index", on: :collection
+    resources :favorites, only: [:create, :destroy]
   end
   resources :comments
+  resources :favorites, only: [:index]
 
   resources :users, only: [:new, :create, :edit, :update, :show] do
     get "/change_password" => "users#change_password"

@@ -26,13 +26,13 @@ class PostsController < ApplicationController
   def index
     if params[:q]
       session[:q] = params[:q]
-      @posts = Post.search(session[:q]).order(:updated_at).page params[:page]
+      @posts = Post.search(session[:q]).order("updated_at DESC").page params[:page]
     elsif params[:all] == "all"
-      @posts = Post.order(:updated_at).page params[:page]
+      @posts = Post.order("updated_at DESC").page params[:page]
     elsif params[:all] == "user"
-      @posts = Post.where(user_id: current_user.id).order(:updated_at).page params[:page]
+      @posts = Post.where(user_id: current_user.id).order("updated_at DESC").page params[:page]
     else
-      @posts = Post.order(:updated_at).page params[:page]
+      @posts = Post.order("updated_at DESC").page params[:page]
     end
   end
 
@@ -58,7 +58,7 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:title, :body, :category_id, :user_id)
+    params.require(:post).permit(:title, :body, :category_id)
   end
 
   def find_post

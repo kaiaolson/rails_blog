@@ -1,6 +1,8 @@
 class User < ActiveRecord::Base
   has_many :posts, dependent: :nullify
   has_many :comments, dependent: :nullify
+  has_many :favorites, dependent: :destroy
+  has_many :favorite_posts, through: :favorites, source: :post
 
   has_secure_password
   validates :password, length: {minimum: 6}, on: :create

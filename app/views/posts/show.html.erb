@@ -11,6 +11,13 @@
 <%= link_to "Delete", post_path(@post), class: "btn btn-danger", method: :delete, data: {confirm: "Are you sure you want to delete this post?"} %>
 <% end %>
 
+<% favorite = @post.favorite_for current_user %>
+<% if favorite %>
+  <%= link_to fa_icon("heart"), post_favorite_path(@post, favorite), method: :delete, class: "fa-icon-link" %>
+<% else %>
+  <%= link_to fa_icon("heart-o"), post_favorites_path(@post), method: :post, class: "fa-icon-link" %>
+<% end %>
+
 <h2>Comments</h2>
 
 <% @post.comments.order("created_at DESC").each do |com|%>

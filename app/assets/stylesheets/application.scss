@@ -10,6 +10,7 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *= require_tree .
+ *= require font-awesome
  */
 
  @import "bootstrap-sprockets";
@@ -21,4 +22,7 @@ body {
 
 textarea, input {
   max-width: 400px;
+}
+.fa-icon-link {
+  font-size: 30px;
 }

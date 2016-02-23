@@ -1,5 +1,7 @@
 class Post < ActiveRecord::Base
   has_many :comments, dependent: :destroy
+  has_many :favorites, dependent: :destroy
+  has_many :users, through: :favorites
   belongs_to :category
   belongs_to :user
   paginates_per 10
@@ -25,5 +27,9 @@ class Post < ActiveRecord::Base
 
   def user_full_name
     user.full_name if user
+  end
+
+  def favorite_for(user)
+    favorites.find_by_user_id user
   end
 end

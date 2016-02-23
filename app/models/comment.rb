@@ -7,4 +7,8 @@ class Comment < ActiveRecord::Base
   def user_full_name
     user.full_name if user
   end
+
+  def self.today
+    where("created_at >= ?", Time.zone.now.beginning_of_day)
+  end
 end
