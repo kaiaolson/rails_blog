@@ -1,0 +1,12 @@
+<div id="<%= dom_id(comment) %>">
+  <%= comment.body %> |
+  <%= comment.created_at.strftime("%B %d, %Y") %>
+  <% if can? :destroy, comment %>
+  <%= link_to "Delete", [@post, comment],
+                        method: :delete,
+                        remote: true,
+                        style: "text-align: right;",
+                        data: {confirm: "Are you sure?"}%>
+  <% end %>
+  <hr>
+</div>

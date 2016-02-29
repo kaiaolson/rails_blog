@@ -13,11 +13,15 @@ class CommentsController < ApplicationController
     @comment = Comment.new comment_params
     @comment.post_id = @post.id
     @comment.user = current_user
-    if @comment.save
-      CommentsMailer.notify_post_owner(@comment).deliver_later
-      redirect_to post_path(@post), notice: "Comment created!"
-    else
-      render "/posts/show", alert: "Comment not created!"
+    respond_to do |format|
+      if @comment.save
+        # CommentsMailer.notify_post_owner(@comment).deliver_later
+        format.html { redirect_to post_path(@post), notice: "Comment created!" }
+        format.js { render :create_success }
+      else
+        format.html { render "/posts/show", alert: "Comment not created!" }
+        format.js { render :create_failure }
+      end
     end
   end
 
@@ -41,7 +45,10 @@ class CommentsController < ApplicationController
 
   def destroy
     @comment.destroy
-    redirect_to post_path(params[:post_id]), notice: "Comment deleted!"
+    respond_to do |format|
+      format.html { redirect_to post_path(params[:post_id]), notice: "Comment deleted!" }
+      format.js { render }
+    end
   end
 
   private

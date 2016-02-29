@@ -1,13 +1,9 @@
-<ul>
-  <% @comment.errors.full_messages.each do |message| %>
-    <li><%= message %></li>
-  <% end %>
-</ul>
+<%= @comment.errors.full_messages.join(", ") %>
 
-<%= form_for @comment do |f| %>
+<%= form_for [@post, @comment], remote: true do |f| %>
   <%= content_tag(:div, class: "form-group") do %>
     <%= f.label :body %>
     <%= f.text_area :body, class: "form-control" %>
   <% end %>
-  <%= f.submit class: "btn btn-success" %>
+  <%= f.submit class: "btn btn-primary" %>
 <% end %>
