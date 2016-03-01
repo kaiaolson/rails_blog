@@ -33,11 +33,13 @@ class CommentsController < ApplicationController
   end
 
   def edit
-    redirect_to post_path(params[:post_id], params[:comment_id])
+    respond_to do |format|
+      format.js { render :edit_comment }
+    end
   end
 
   def update
-    @post = Post.find params[:post_id]
+    @post = @comment.post
     respond_to do |format|
       if @comment.update comment_params
         format.html { redirect_to comment_path(@comment) }
