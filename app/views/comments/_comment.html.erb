@@ -1,5 +1,11 @@
 <div id="<%= dom_id(comment) %>">
+  <%# this if/else statement displays a form if the user clicks on Edit Comment.
+  It creates a parameter 'comment_id' and if it equals the id of the current comment
+  (in .each loop back in show page) then it displays the form %>
   <% if params[:comment_id].to_i == comment.id %>
+    <%# the comment form now requires you to pass in a parameter for 'comment';
+    not using an instance variables allows us to have two forms on one page, one
+    for updating, one for creating %>
     <%= render "/comments/form", comment: comment %>
   <% else %>
     <%= comment.body %> |

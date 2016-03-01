@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_action :find_post, only: [:edit, :update, :destroy]
+  before_action :find_post, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user, except: [:index, :show]
   before_action :authorize_user, only: [:edit, :update, :destroy]
 
@@ -20,7 +20,6 @@ class PostsController < ApplicationController
   end
 
   def show
-    @post = Post.find params[:id]
     @comment = Comment.new
   end
 
