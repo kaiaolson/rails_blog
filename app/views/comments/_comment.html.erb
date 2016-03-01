@@ -1,15 +1,19 @@
 <div id="<%= dom_id(comment) %>">
-  <%= comment.body %> |
-  <%= comment.created_at.strftime("%B %d, %Y") %>
-  <% if can? :edit, comment %>
-  <%= link_to "Edit", post_comment_path(@post, comment) %>
-  <% end %>
-  <% if can? :destroy, comment %>
-  <%= link_to "Delete", [@post, comment],
-                        method: :delete,
-                        remote: true,
-                        style: "text-align: right;",
-                        data: {confirm: "Are you sure?"}%>
+  <% if params[:comment_id].to_i == comment.id %>
+    <%= render "/comments/form", comment: comment %>
+  <% else %>
+    <%= comment.body %> |
+    <%= comment.created_at.strftime("%B %d, %Y") %>
+    <% if can? :edit, comment %>
+    <%= link_to "Edit", post_path(@post, comment_id: comment) %>
+    <% end %>
+    <% if can? :destroy, comment %>
+    <%= link_to "Delete", [@post, comment],
+                          method: :delete,
+                          remote: true,
+                          style: "text-align: right;",
+                          data: {confirm: "Are you sure?"}%>
+    <% end %>
   <% end %>
   <hr>
 </div>

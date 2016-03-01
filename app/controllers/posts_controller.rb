@@ -20,13 +20,8 @@ class PostsController < ApplicationController
   end
 
   def show
-    if params[:post_id]
-      @post = Post.find params[:post_id]
-      @comment = Comment.find params[:id]
-    else
-      @post = Post.find params[:id]
-      @comment = Comment.new
-    end
+    @post = Post.find params[:id]
+    @comment = Comment.new
   end
 
   def index

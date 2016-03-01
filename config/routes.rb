@@ -9,7 +9,7 @@ Rails.application.routes.draw do
 
   resources :posts do
     resources :comments, only: [:create, :update, :destroy]
-    get "/comments/:id" => "posts#show"
+    # get "/comments/:id" => "posts#show"
     # post "/" => "posts#index", on: :collection
     resources :favorites, only: [:create, :destroy]
   end

@@ -1,6 +1,6 @@
-<%= @comment.errors.full_messages.join(", ") %>
+<%= comment.errors.full_messages.join(", ") %>
 
-<%= form_for [@post, @comment], remote: true do |f| %>
+<%= form_for [@post, comment], remote: true do |f| %>
   <%= content_tag(:div, class: "form-group") do %>
     <%= f.label :body %>
     <%= f.text_area :body, class: "form-control" %>

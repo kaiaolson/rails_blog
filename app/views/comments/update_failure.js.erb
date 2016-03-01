@@ -1,1 +1,1 @@
-alert("Unable to update!");
+$("#<%= dom_id(@comment) %>").html("<%= j render 'form', comment: @comment %>");
