@@ -7,13 +7,12 @@ Rails.application.routes.draw do
   get "/posts/search" => "posts#search"
   # get "/sessions/forgot_password" => "sessions#forgot_password"
 
-
   resources :posts do
-    resources :comments, only: [:create, :destroy]
+    resources :comments, only: [:create, :update, :destroy]
+    get "/comments/:id" => "posts#show"
     # post "/" => "posts#index", on: :collection
     resources :favorites, only: [:create, :destroy]
   end
-  resources :comments
   resources :favorites, only: [:index]
 
   resources :users, only: [:new, :create, :edit, :update, :show] do

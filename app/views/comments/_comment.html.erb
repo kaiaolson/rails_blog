@@ -1,6 +1,9 @@
 <div id="<%= dom_id(comment) %>">
   <%= comment.body %> |
   <%= comment.created_at.strftime("%B %d, %Y") %>
+  <% if can? :edit, comment %>
+  <%= link_to "Edit", post_comment_path(@post, comment) %>
+  <% end %>
   <% if can? :destroy, comment %>
   <%= link_to "Delete", [@post, comment],
                         method: :delete,

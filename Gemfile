@@ -21,6 +21,7 @@ gem 'bootstrap-kaminari-views'
 gem 'cancancan'
 gem 'font-awesome-rails'
 gem 'delayed_job_active_record'
+gem 'quiet_assets'
 
 
 # Use jquery as the JavaScript library

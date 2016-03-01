@@ -108,6 +108,8 @@ GEM
     nokogiri (1.6.7.2)
       mini_portile2 (~> 2.0.0.rc2)
     pg (0.18.4)
+    quiet_assets (1.1.0)
+      railties (>= 3.1, < 5.0)
     rack (1.6.4)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -217,6 +219,7 @@ DEPENDENCIES
   jquery-rails
   kaminari
   pg (~> 0.15)
+  quiet_assets
   rails (= 4.2.5.1)
   rails_12factor
   rspec-rails
