@@ -4,18 +4,9 @@
   <% end %>
 </ul>
 
-<%= form_for @post do |f| %>
-  <%= content_tag(:div, class: "form-group") do %>
-    <%= f.label :title %>
-    <%= f.text_field :title, class: "form-control" %>
-  <% end %>
-  <%= content_tag(:div, class: "form-group") do %>
-    <%= f.label :body %>
-    <%= f.text_area :body, class: "form-control" %>
-  <% end %>
-  <%= content_tag(:div, class: "form-group") do %>
-    <%= f.label :category_id %>
-    <%= f.collection_select(:category_id, Category.order("title"), :id, :title, class: "form-control")  %>
-  <% end %>
-  <%= f.submit class: "btn btn-success" %>
+<%= simple_form_for @post do |f| %>
+  <%= f.input :title %>
+  <%= f.input :body %>
+  <%= f.input :category_id, collection: Category.order("title")  %>
+  <%= f.submit class: "btn btn-success"  %>
 <% end %>

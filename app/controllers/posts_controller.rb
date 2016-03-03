@@ -21,6 +21,11 @@ class PostsController < ApplicationController
 
   def show
     @comment = Comment.new
+    comments = @post.comments
+    respond_to do |format|
+      format.html { render }
+      format.json { render json: @post}
+    end
   end
 
   def index
@@ -34,12 +39,19 @@ class PostsController < ApplicationController
     else
       @posts = Post.order("updated_at DESC").page params[:page]
     end
+
+    respond_to do |format|
+      format.html { render }
+      format.json { @posts = Post.all
+                    render json: @posts.select(:id, :title) }
+    end
   end
 
   def edit
   end
 
   def update
+    @post.slug = nil
     if @post.update post_params
       redirect_to post_path(@post)
       flash[:notice] = "Post updated!"
@@ -62,7 +74,7 @@ class PostsController < ApplicationController
   end
 
   def find_post
-    @post = Post.find params[:id]
+    @post = Post.friendly.find params[:id]
   end
 
   def authorize_user

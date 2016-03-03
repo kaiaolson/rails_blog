@@ -6,34 +6,15 @@
   </ul>
 <% end %>
 
-<%= form_for @user do |f| %>
-  <%= content_tag(:div, class: "form-group") do %>
-    <%= f.label :first_name %>
-    <%= f.text_field :first_name, class: "form-control" %>
-  <% end %>
-  <%= content_tag(:div, class: "form-group") do %>
-    <%= f.label :last_name %>
-    <%= f.text_field :last_name, class: "form-control" %>
-  <% end %>
-  <%= content_tag(:div, class: "form-group") do %>
-    <%= f.label :email %>
-    <%= f.email_field :email, class: "form-control" %>
-  <% end %>
-
+<%= simple_form_for @user do |f| %>
+  <%= f.input :first_name %>
+  <%= f.input :last_name %>
+  <%= f.input :email %>
   <% if user_signed_in?%>
-    <%= content_tag(:div, class: "form-group") do %>
-      <%= f.label :current_password %>
-      <%= f.password_field :current_password, class: "form-control" %>
-    <% end %>
+    <%= f.input :current_password %>
   <% else %>
-    <%= content_tag(:div, class: "form-group") do %>
-      <%= f.label :password %>
-      <%= f.password_field :password, class: "form-control" %>
-    <% end %>
-    <%= content_tag(:div, class: "form-group") do %>
-      <%= f.label :password_confirmation %>
-      <%= f.password_field :password_confirmation, class: "form-control" %>
-    <% end %>
+    <%= f.input :password %>
+    <%= f.input :password_confirmation %>
   <% end %>
   <%= f.submit class: "btn btn-primary" %>
 <% end %>

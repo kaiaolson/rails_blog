@@ -2,11 +2,9 @@
 
 <%= @comment.errors.full_messages.join(", ") %>
 
-<%= form_for [@post, @comment], remote: true do |f| %>
-  <%= content_tag(:div, class: "form-group") do %>
-    <%= f.label :body %>
-    <%= f.text_area :body, class: "form-control" %>
-  <% end %>
+<%= simple_form_for [@post, @comment], remote: true do |f| %>
+  <%= f.input :body %>
   <%= f.submit class: "btn btn-primary" %>
 <% end %>
+
 </div>

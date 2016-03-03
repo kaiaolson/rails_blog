@@ -6,7 +6,7 @@ class FavoritesController < ApplicationController
   end
 
   def create
-    @post = Post.find params[:post_id]
+    @post = Post.friendly.find params[:post_id]
     @favorite = Favorite.new(post: @post, user: current_user)
     respond_to do |format|
       if @favorite.save
@@ -20,7 +20,7 @@ class FavoritesController < ApplicationController
   end
 
   def destroy
-    @post = Post.find params[:post_id]
+    @post = Post.friendly.find params[:post_id]
     @favorite = current_user.favorites.find params[:id]
     @favorite.destroy
     respond_to do |format|

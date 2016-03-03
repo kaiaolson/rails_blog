@@ -22,6 +22,9 @@ gem 'cancancan'
 gem 'font-awesome-rails'
 gem 'delayed_job_active_record'
 gem 'quiet_assets'
+gem 'rack-cors', :require => 'rack/cors'
+gem 'simple_form'
+gem 'friendly_id', '~> 5.1.0'
 
 
 # Use jquery as the JavaScript library
@@ -47,6 +50,10 @@ gem 'rails_12factor', group: :production
 group :development, :test do
   gem 'rspec-rails'
   gem 'factory_girl_rails'
+  gem 'capybara'
+  gem 'launchy'
+
+  gem 'simplecov', :require => false
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
 end

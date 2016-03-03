@@ -1,4 +1,7 @@
 class Post < ActiveRecord::Base
+  extend FriendlyId
+  friendly_id :title, use: [:slugged, :history]
+
   has_many :comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
   has_many :users, through: :favorites

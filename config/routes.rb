@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   # get "/sessions/forgot_password" => "sessions#forgot_password"
 
   resources :posts do
-    resources :comments, only: [:create, :destroy]
+    resources :comments, only: [:index, :create, :destroy]
     # get "/comments/:id" => "posts#show"
     # post "/" => "posts#index", on: :collection
     resources :favorites, only: [:create, :destroy]
