@@ -25,6 +25,8 @@ gem 'quiet_assets'
 gem 'rack-cors', :require => 'rack/cors'
 gem 'simple_form'
 gem 'friendly_id', '~> 5.1.0'
+gem 'carrierwave', github: 'carrierwaveuploader/carrierwave'
+gem 'mini_magick'
 
 
 # Use jquery as the JavaScript library

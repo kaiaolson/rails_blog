@@ -11,11 +11,11 @@ class PostsController < ApplicationController
     @post = Post.new post_params
     @post.user = current_user
     if @post.save
-      redirect_to post_path(@post)
       flash[:notice] = "Post created!"
+      redirect_to post_path(@post)
     else
-      render :new
       flash[:alert] = "Post not created!"
+      redirect_to new_post_path
     end
   end
 
@@ -56,21 +56,21 @@ class PostsController < ApplicationController
       redirect_to post_path(@post)
       flash[:notice] = "Post updated!"
     else
-      render :edit
       flash[:alert] = "Post not updated!"
+      render :edit
     end
   end
 
   def destroy
     @post.destroy
-    redirect_to posts_path
     flash[:notice] = "Your post was deleted!"
+    redirect_to posts_path
   end
 
   private
 
   def post_params
-    params.require(:post).permit(:title, :body, :category_id)
+    params.require(:post).permit(:title, :body, :category_id, {images: []})
   end
 
   def find_post

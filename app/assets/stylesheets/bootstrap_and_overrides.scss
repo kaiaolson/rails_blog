@@ -1,0 +1,18 @@
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+body {
+ padding: 20px 0px;
+}
+
+textarea, input, select {
+ max-width: 400px;
+}
+.fa-icon-link {
+ font-size: 30px;
+}
+.post-image {
+  display: inline-block;
+  float: left;
+  padding:10px;
+}

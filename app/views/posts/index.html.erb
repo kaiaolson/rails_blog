@@ -9,7 +9,13 @@
 
 <% @posts.each do |post| %>
   <div>
-     <h3><%= link_to post.title, post_path(post) %></h3>
+     <h3>
+        <% if post.images.empty? %>
+        <% else %>
+          <%= image_tag post.images[0].url(:thumb) %>
+        <% end %>
+        <%= link_to post.title, post_path(post) %>
+      </h3>
      <hr>
   </div>
 <% end %>
