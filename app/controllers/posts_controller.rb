@@ -11,6 +11,15 @@ class PostsController < ApplicationController
     @post = Post.new post_params
     @post.user = current_user
     if @post.save
+      if @post.tweet_it
+        client = Twitter::REST::Client.new do |config|
+          config.consumer_key        = ENV["twitter_consumer_key"]
+          config.consumer_secret     = ENV["twitter_consumer_secret"]
+          config.access_token        = current_user.twitter_consumer_token
+          config.access_token_secret = current_user.twitter_consumer_secret
+        end
+        client.update("#{@post.title}: http://rails-blog.herokuapp.com/#{@post.friendly_id}")
+      end
       flash[:notice] = "Post created!"
       redirect_to post_path(@post)
     else
@@ -70,7 +79,7 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:title, :body, :category_id, {images: []})
+    params.require(:post).permit(:title, :body, :category_id, {images: []}, :tweet_it)
   end
 
   def find_post

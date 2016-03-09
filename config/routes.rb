@@ -33,4 +33,7 @@ Rails.application.routes.draw do
       resources :posts
     end
   end
+
+  get "/auth/twitter", as: :sign_in_with_twitter
+  get "/auth/twitter/callback" => "callbacks#twitter"
 end

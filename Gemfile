@@ -29,6 +29,7 @@ gem 'carrierwave', github: 'carrierwaveuploader/carrierwave'
 gem 'mini_magick'
 gem 'active_model_serializers'
 gem 'omniauth-twitter'
+gem "twitter"
 
 
 # Use jquery as the JavaScript library

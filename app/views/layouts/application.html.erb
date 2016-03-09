@@ -35,6 +35,7 @@
             <li><%= link_to "Log Out", sessions_path, method: :delete, data: {confirm: "Are you sure you want to log out?"} %></li>
           <% else %>
             <li><%= link_to "Sign In", new_session_path %></li>
+            <li><%= link_to "Sign in with Twitter", sign_in_with_twitter_path %></li>
             <li><button class="btn btn-default navbar-btn"><%= link_to "Sign Up", new_user_path %></button></li>
           <% end %>
         </ul>
