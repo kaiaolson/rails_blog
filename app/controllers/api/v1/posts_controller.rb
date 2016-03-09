@@ -1,6 +1,6 @@
-class Api::V1::PostsController < ApplicationController
+class Api::V1::PostsController < Api::BaseController
   def index
-    @posts = Post.order("created_at DESC").limit(10)
+    @posts = Post.order("created_at DESC")
     render json: @posts
   end
 

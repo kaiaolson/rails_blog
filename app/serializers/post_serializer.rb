@@ -12,7 +12,7 @@ class PostSerializer < ActiveModel::Serializer
   end
 
   def updated_date
-    object.created_at.strftime("%Y-%b-%d")
+    object.updated_at.strftime("%Y-%b-%d")
   end
 
   def favorite_count

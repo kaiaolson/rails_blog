@@ -28,6 +28,7 @@ gem 'friendly_id', '~> 5.1.0'
 gem 'carrierwave', github: 'carrierwaveuploader/carrierwave'
 gem 'mini_magick'
 gem 'active_model_serializers'
+gem 'omniauth-twitter'
 
 
 # Use jquery as the JavaScript library
