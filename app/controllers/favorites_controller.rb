@@ -11,10 +11,10 @@ class FavoritesController < ApplicationController
     respond_to do |format|
       if @favorite.save
         format.html { redirect_to @post, notice: "Post added to favorites!" }
-        format.js { render :create_success }
+        format.js   { render :create_success }
       else
         format.html { redirect_to @post, notice: "Post already in favorites!" }
-        format.js { render :create_failure }
+        format.js   { render :create_failure }
       end
     end
   end
@@ -25,7 +25,7 @@ class FavoritesController < ApplicationController
     @favorite.destroy
     respond_to do |format|
       format.html { redirect_to @post, notice: "Post removed from favorites." }
-      format.js { render }
+      format.js   { render }
     end
   end
 end
