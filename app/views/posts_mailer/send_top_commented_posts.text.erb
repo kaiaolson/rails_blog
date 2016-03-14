@@ -1,0 +1,10 @@
+Hello <%= @admin.full_name %>,
+
+Here are the top commented blog posts from the last month!
+
+<% @posts.each do |post| %>
+- <%= link_to post.title, post_url(post) %>
+<% end %>
+
+Regards,
+Rails Blog Team

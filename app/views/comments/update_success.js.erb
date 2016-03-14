@@ -1,0 +1,2 @@
+// replaces the comment div with the updated info
+$("#<%= dom_id(@comment) %>").replaceWith("<%= j render 'comment', comment: @comment %>");

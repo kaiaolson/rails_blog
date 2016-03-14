@@ -1,0 +1,11 @@
+<p>Hello <%= @admin.full_name %>,</p>
+<p>Here are the top commented blog posts from the last month!</p>
+
+<ol>
+  <% @posts.each do |post| %>
+    <li><%= link_to post.title, post_url(post) %></li>
+  <% end %>
+</ol>
+
+<p>Regards,</p>
+<p>Rails Blog Team</p>

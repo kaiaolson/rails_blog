@@ -1,0 +1,23 @@
+<h1>All Posts (<%= Post.count %>)</h1>
+
+<% if user_signed_in? %>
+<div class="btn-group">
+  <button class="btn btn-default"><%= link_to "All Posts", {all: "all", method: :post} %></button>
+  <button class="btn btn-default"><%= link_to "User Posts", {all: "user", method: :post}%></button>
+</div>
+<% end %>
+
+<% @posts.each do |post| %>
+  <div>
+     <h3>
+        <% if post.images.empty? %>
+        <% else %>
+          <%= image_tag post.images[0].url(:thumb) %>
+        <% end %>
+        <%= link_to post.title, post_path(post) %>
+      </h3>
+     <hr>
+  </div>
+<% end %>
+
+<div class="text-center"><%= paginate @posts, theme: 'bootstrap3' %></div>

@@ -1,0 +1,10 @@
+<p>Hello <%= @post.user.full_name %>,</p>
+<p>Here are today's comments on <%= @post.title %></p>
+<ul>
+  <% @post_comments.each do |comment| %>
+    <li><%= comment.body %></li>
+  <% end %>
+</ul>
+<p>Click <%= link_to "here", post_url(@post) %> to view your post.</p>
+<p>Regards,</p>
+<p>Rails Blog Team</p>

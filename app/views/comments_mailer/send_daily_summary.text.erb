@@ -1,0 +1,9 @@
+Hello <%= @post.user.full_name %>,
+Here are today's comments on <%= @post.title %>
+<% @post_comments.each do |comment| %>
+  - <%= @comment_body %>
+
+<% end %>
+Click <%= link_to "here", post_url(@post) %> to view your post.
+Regards,
+Rails Blog Team

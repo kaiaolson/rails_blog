@@ -1,0 +1,6 @@
+<% favorite = @post.favorite_for current_user %>
+<% if favorite %>
+  <%= link_to fa_icon("heart"), post_favorite_path(@post, favorite), method: :delete, remote: true, class: "fa-icon-link unfav" %>
+<% else %>
+  <%= link_to fa_icon("heart-o"), post_favorites_path(@post), method: :post, remote: true, class: "fa-icon-link fav" %>
+<% end %>
