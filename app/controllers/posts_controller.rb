@@ -20,8 +20,7 @@ class PostsController < ApplicationController
         end
         client.update("#{@post.title}: http://rails-blog.herokuapp.com/#{@post.friendly_id}")
       end
-      flash[:notice] = "Post created!"
-      redirect_to post_path(@post)
+      redirect_to post_path(@post), notice: "Post created!"
     else
       flash[:alert] = "Post not created!"
       redirect_to new_post_path
@@ -30,7 +29,6 @@ class PostsController < ApplicationController
 
   def show
     @comment = Comment.new
-    comments = @post.comments
     respond_to do |format|
       format.html { render }
       format.json { render json: @post}
@@ -62,8 +60,7 @@ class PostsController < ApplicationController
   def update
     @post.slug = nil
     if @post.update post_params
-      redirect_to post_path(@post)
-      flash[:notice] = "Post updated!"
+      redirect_to post_path(@post), notice: "Post updated!"
     else
       flash[:alert] = "Post not updated!"
       render :edit
@@ -72,8 +69,7 @@ class PostsController < ApplicationController
 
   def destroy
     @post.destroy
-    flash[:notice] = "Your post was deleted!"
-    redirect_to posts_path
+    redirect_to posts_path, notice: "Your post was deleted!"
   end
 
   private

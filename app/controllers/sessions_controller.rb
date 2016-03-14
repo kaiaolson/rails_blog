@@ -11,17 +11,16 @@ class SessionsController < ApplicationController
     elsif cookies[:attempts].to_i >= 3
       redirect_to new_password_reset_path, alert: "Account locked! Please reset password."
     else
-      flash[:alert] = "Wrong credentials!"
       current_attempts = cookies[:attempts].to_i
       current_attempts += 1
       cookies[:attempts] = current_attempts
+      flash[:alert] = "Wrong credentials!"
       render :new
     end
   end
 
   def destroy
-    session[:user_id] = nil
-    cookies[:attempts] = nil
+    session[:user_id], cookies[:attempts] = nil
     redirect_to root_path, notice: "You are logged out!"
   end
 end

@@ -11,7 +11,7 @@ class CommentsController < ApplicationController
   def create
     @post = Post.friendly.find params[:post_id]
     @comment = Comment.new comment_params
-    @comment.post_id = @post.id
+    @comment.post = @post
     @comment.user = current_user
     respond_to do |format|
       if @comment.save
@@ -56,7 +56,7 @@ class CommentsController < ApplicationController
     @comment.destroy
     respond_to do |format|
       format.html { redirect_to post_path(params[:post_id]), notice: "Comment deleted!" }
-      format.js { render }
+      format.js   { render }
     end
   end
 
