@@ -9,6 +9,6 @@
   <%= f.input :body %>
   <%= f.input :tweet_it, as: :boolean, label: "Tweet It!" %>
   <%= f.input :category_id, collection: Category.order("title"), default: 1  %>
-  <%= f.input :images, as: :file, input_html: {multiple: true}  %>
+  <%= f.input :images, as: :file, input_html: {multiple: true}, hint: "jpg png gif"  %>
   <%= f.submit class: "btn btn-success"  %>
 <% end %>
