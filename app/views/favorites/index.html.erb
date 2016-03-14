@@ -1,0 +1,10 @@
+<h1>Favorite Posts</h1>
+
+<% @posts.each do |post| %>
+  <div>
+     <h3><%= link_to post.title, post_path(post) %></h3>
+     <hr>
+  </div>
+<% end %>
+
+<div class="text-center"><%= paginate @posts, theme: 'bootstrap3' %></div>

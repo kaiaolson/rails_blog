@@ -1,0 +1,24 @@
+<h1>Reset Password</h1>
+
+<%= form_for @user, :url => password_reset_path(params[:id]) do |f| %>
+  <% if @user.errors.any? %>
+    <%= content_tag(:div, class: "form-group") do %>
+      <ul>
+        <% for message in @user.errors.full_messages %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    <% end %>
+  <% end %>
+  <%= content_tag(:div, class: "form-group") do %>
+    <%= f.label :password %>
+    <%= f.password_field :password, class: "form-control" %>
+  <% end %>
+  <%= content_tag(:div, class: "form-group") do %>
+    <%= f.label :password_confirmation %>
+    <%= f.password_field :password_confirmation, class: "form-control" %>
+  <% end %>
+  <%= content_tag(:div, class: "form-group") do %>
+    <%= f.submit "Update Password", class: "btn btn-primary" %>
+  <% end %>
+<% end %>

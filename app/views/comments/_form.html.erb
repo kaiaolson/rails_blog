@@ -1,0 +1,10 @@
+<div id="<%= dom_id(comment) %>">
+
+<%= @comment.errors.full_messages.join(", ") %>
+
+<%= simple_form_for [@post, @comment], remote: true do |f| %>
+  <%= f.input :body %>
+  <%= f.submit class: "btn btn-primary" %>
+<% end %>
+
+</div>
