@@ -3,6 +3,7 @@
 <h5>Created by: <%= @post.user_full_name %></h5>
 <p><%= @post.body %></p>
 
+
 <% if can? :edit, @post %>
 <%= link_to "Edit", edit_post_path(@post), class: "btn btn-warning" %>
 <% end %>
@@ -11,19 +12,26 @@
 <%= link_to "Delete", post_path(@post), class: "btn btn-danger", method: :delete, data: {confirm: "Are you sure you want to delete this post?"} %>
 <% end %>
 
-<div id="favorites">
+<div id="favorites" style="display:inline;">
   <%= render "/favorites/post_favorite", post: @post %>
+</div>
+
+<div class="col-sm-12">
+  <% @post.images.each do |image| %>
+  <div class="post-image"><%= image_tag image.url(:large) %></div>
+  <% end %>
 </div>
 
 <h2>Comments</h2>
 
-<div class="comments">
-  <% @post.comments.order("created_at DESC").each do |comment|%>
-  <%= render "comments/comment", comment: comment %>
-  <% end %>
+<div id="commentlist" class="comments">
+  <%= react_component("CommentList", {comments: @post.comments.order("created_at DESC"), post_id: @post.id}) %>
 </div>
 
 <h3>Create a Comment</h3>
+<% if @comment.errors %>
+<%= @comment.errors.full_messages.join(", ") %>
+<% end %>
 <div id="comment-form">
   <%= render "/comments/form", comment: @comment %>
 </div>

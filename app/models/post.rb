@@ -2,6 +2,10 @@ class Post < ActiveRecord::Base
   extend FriendlyId
   friendly_id :title, use: [:slugged, :history]
 
+  attr_accessor :tweet_it
+
+  mount_uploaders :images, ImageUploader
+
   has_many :comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
   has_many :users, through: :favorites

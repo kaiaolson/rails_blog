@@ -27,4 +27,13 @@ Rails.application.routes.draw do
   resources :password_resets
 
   root "home#index"
+
+  namespace :api, defaults: {format: :json} do
+    namespace :v1 do
+      resources :posts
+    end
+  end
+
+  get "/auth/twitter", as: :sign_in_with_twitter
+  get "/auth/twitter/callback" => "callbacks#twitter"
 end

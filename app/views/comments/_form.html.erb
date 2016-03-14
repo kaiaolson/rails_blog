@@ -1,6 +1,4 @@
-<div id="<%= dom_id(comment) %>">
-
-<%= @comment.errors.full_messages.join(", ") %>
+<div id="<%= dom_id(@comment) %>">
 
 <%= simple_form_for [@post, @comment], remote: true do |f| %>
   <%= f.input :body %>
