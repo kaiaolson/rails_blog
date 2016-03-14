@@ -30,6 +30,7 @@ gem 'mini_magick'
 gem 'active_model_serializers'
 gem 'omniauth-twitter'
 gem "twitter"
+gem 'react-rails', '~> 1.6.0'
 
 
 # Use jquery as the JavaScript library

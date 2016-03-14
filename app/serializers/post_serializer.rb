@@ -1,7 +1,13 @@
 class PostSerializer < ActiveModel::Serializer
-  attributes :id, :title, :body, :favorite_count, :updated_date, :creation_date
+  attributes :id, :title, :body, :favorite_count, :updated_date, :creation_date, :user
 
   has_many :comments
+
+  has_one :user_id
+
+  def user
+    object.user.first_name + " " + object.user.last_name
+  end
 
   def title
     object.title.titleize

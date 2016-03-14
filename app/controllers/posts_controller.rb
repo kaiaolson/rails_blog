@@ -11,7 +11,7 @@ class PostsController < ApplicationController
     @post = Post.new post_params
     @post.user = current_user
     if @post.save
-      if @post.tweet_it
+      if @post.tweet_it === true
         client = Twitter::REST::Client.new do |config|
           config.consumer_key        = ENV["twitter_consumer_key"]
           config.consumer_secret     = ENV["twitter_consumer_secret"]
@@ -52,7 +52,7 @@ class PostsController < ApplicationController
     respond_to do |format|
       format.html { render }
       format.json { @posts = Post.all
-                    render json: @posts.select(:id, :title) }
+                    render json: @posts.select(:id, :title, :body, :user_id, :updated_at, :created_at).limit(1) }
     end
   end
 
