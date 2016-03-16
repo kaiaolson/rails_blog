@@ -3,6 +3,5 @@ class PostsMailer < ApplicationMailer
     @posts = posts
     @admin = User.find admin_id
     mail(to: @admin.email, subject: "Top 10 Commented Posts")
-    print "I'm in the mailer!"
   end
 end
