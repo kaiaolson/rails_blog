@@ -1,0 +1,8 @@
+<div id="<%= dom_id(@comment) %>">
+
+<%= simple_form_for [@post, @comment], remote: true do |f| %>
+  <%= f.input :body %>
+  <%= f.submit class: "btn btn-primary" %>
+<% end %>
+
+</div>
