@@ -13,4 +13,4 @@
 /tmp
 
 # Ignore app keys
-/config/initializers/app_keys.rb
+config/initializers/app_keys.rb

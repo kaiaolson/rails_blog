@@ -15,6 +15,5 @@ class TopTenCommentedPostsJob < ActiveJob::Base
     admins.each do |admin|
       PostsMailer.send_top_commented_posts(posts, admin.id).deliver_now
     end
-    print "I'm in the Job!"
   end
 end
